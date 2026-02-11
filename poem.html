@@ -1,0 +1,324 @@
+poem.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Poem | Your Name</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      margin: 0;
+      background: url('vintage-bg.jpg') center/cover no-repeat;
+      color: #f5e6c8;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .poem-page {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 3rem 1rem;
+      overflow-y: auto;
+    }
+
+    .poem-container {
+      background: rgba(0, 0, 0, 0.8);
+      border: 2px solid #c9a227;
+      border-radius: 10px;
+      padding: 3rem 2rem;
+      max-width: 800px;
+      width: 100%;
+      color: #f5e6c8;
+      text-align: left;
+      line-height: 1.8;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+      position: relative;
+      transition: transform 0.5s ease, opacity 0.5s ease;
+    }
+
+    .poem-container.slide-out {
+      transform: translateY(50px);
+      opacity: 0;
+    }
+
+    .poem-container h1 {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #f5e6c8;
+      font-size: 2rem;
+    }
+
+    .poem-container p {
+      font-size: 1.1rem;
+      color: #d4c29a;
+    }
+
+    .controls {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 2rem;
+    }
+
+    .control-btn {
+      background: linear-gradient(145deg, #c9a227, #f5e6c8);
+      color: #111;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .control-btn:hover {
+      background: linear-gradient(145deg, #f5e6c8, #c9a227);
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      background: none;
+      border: none;
+      color: #c9a227;
+      font-size: 1.8rem;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    .close-btn:hover {
+      color: #f5e6c8;
+    }
+  </style>
+</head>
+<body>
+  <section class="poem-page">
+    <div class="poem-container" id="poemContainer">
+      <button class="close-btn" onclick="closePoem()">×</button>
+      <h1 id="poemTitle"></h1>
+      <p id="poemContent"></p>
+      <div class="controls">
+        <button class="control-btn" onclick="prevPoem()">⬅ Previous</button>
+        <button class="control-btn" onclick="nextPoem()">Next ➡</button>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const poems = [
+      {
+        key: "her-smile",
+        title: "Her Smile",
+        content: `The other day, I saw her from the bus window,<br>
+        just walking closer, about to step in.<br>
+        I smiled without thinking<br>
+        and then, it happened.<br><br>
+        Her eyes met mine,<br>
+        just for a second,<br>
+        then she looked down,<br>
+        trying to hide the curve of her lips.<br>
+        But she looked again…<br>
+        and this time, she smiled.<br><br>
+        God, that smile<br>
+        it struck me like lightning,<br>
+        and at the same time,<br>
+        it healed every part of me I never knew was broken.<br>
+        Her smile kills me<br>
+        not in pain, but in the sweetest way,<br>
+        as if my heart can’t hold<br>
+        so much beauty all at once.<br><br>
+        To me, her smile is pure,<br>
+        untouched by anything cruel,<br>
+        as if it was made only<br>
+        to light the darkest corners of my soul.<br>
+        It blooms inside me like spring,<br>
+        soft, endless, full of color.<br><br>
+        If happiness had a face,<br>
+        it would be hers when she smiles.<br>
+        And if love had a beginning,<br>
+        it started for me<br>
+        the moment her lips curved that way—<br>
+        gentle, radiant, unforgettable.<br><br>
+        Her one smile is enough<br>
+        enough to make me the happiest boy alive,<br>
+        enough to turn an ordinary day<br>
+        into the most beautiful memory<br>
+        I’ll carry forever.`
+      },
+      {
+        key: "around-you-like-the-sun",
+        title: "Around You Like the Sun",
+        content: `He stands at the edge, with a heart full of fire,<br>
+        A boy with a dream, his heart’s only desire.<br>
+        She says, “Don’t fall for me, I won’t be your song,<br>
+        I’m not the one you seek; my love’s not where you belong.”<br><br>
+        But like the sun, that circles the earth with care,<br>
+        He can’t stop revolving, drawn to her anywhere.<br>
+        A silent pull, he doesn’t know how or why,<br>
+        Yet every day he finds himself reaching the sky.<br><br>
+        She speaks of distance, of keeping him far,<br>
+        “Don’t chase me,” she whispers, “I’m not your star.”<br>
+        But he can’t help it, he can’t step away,<br>
+        For in her absence, his heart fades to gray.<br><br>
+        He knows the storms, the cold, and the heat,<br>
+        But he won’t let go, won’t accept defeat.<br>
+        Like lightning’s flash, through darkness and night,<br>
+        He’ll be her shadow, her source of light.<br><br>
+        “I’ll stay with you,” he whispers, “no matter the cost,<br>
+        Even if love’s path is twisted and lost.<br>
+        I’ll be the flame that refuses to die,<br>
+        I’ll fight for your heart, I’ll reach for the sky.”<br><br>
+        He doesn’t need the world, no other dreams,<br>
+        Just her, forever, or so it seems.<br>
+        He’s not ready to lose her, not ready to let go,<br>
+        Even if the winds of time cruelly blow.<br><br>
+        So she warns him again, her voice soft but clear,<br>
+        “Don’t fall for me, I’ll just disappear.”<br>
+        But he smiles, determined, his eyes shining bright,<br>
+        “For you, I’ll wait forever, I’ll fight.”<br>`
+      },
+      {
+        key: "a-silent-wish-a-constant-sky",
+        title: "A Silent Wish, A Constant Sky",
+        content: `My feelings soar like clouds in the blue,<br>
+        They fly, beloved, only to you.<br>
+        My heart is tangled in memory’s thread,<br>
+        It must be weeping, by sweet sorrow led,<br>
+        And tears will fall, a silent, painful flow,<br>
+        But do not let the bond we share ever go.<br><br>
+        It’s hard to speak now, where did my words stray?<br>
+        Perhaps a friend has spoken out of the way.<br>
+        But know this truth, my dear, please trust and see,<br>
+        This isn’t like the past, just lean on me.<br><br>
+        You take the first step, let your courage begin,<br>
+        For in your breath, I promise to live within.<br>
+        I will fill this wide world with the purest of love,<br>
+        A gentle offering from the heavens above.<br><br>
+        You simply dream, and I will make the dreams come true,<br>
+        To have your heart, I’ll wait my last breath through.<br>
+        Take my hand once — this is no joke I make,<br>
+        Wherever you walk, for goodness gracious sake,<br>
+        My shadow will follow, your constant, loyal guide,<br>
+        Forever standing right there by your side.<br><br>
+        Just smile for me now, one true, lovely flash,<br>
+        And let your gentle hand meet mine in a dash.<br>
+        In your gaze, my world finds its reason to be,<br>
+        Please trust my love and finally look at me.`
+      },
+      {
+        key: "the-silence-beneath-my-skin",
+        title: "The Silence Beneath My Skin",
+        content: `I wake in the ruins of myself,<br>
+        breathing ghosts that never left.<br>
+        Each dawn drips poison through my veins,<br>
+        a quiet war, unnamed with pains.<br><br>
+        The mirror bleeds a stranger’s face,<br>
+        eyes like graves — no trace of grace.<br>
+        Dreams collapse where hope once slept,<br>
+        and all I’ve loved I’ve never kept.<br><br>
+        I walk through hours that never end,<br>
+        time’s a curse that won’t bend.<br>
+        The air is heavy, thick with sin,<br>
+        I’m rotting slow beneath my skin.<br><br>
+        My thoughts are knives that hum in me,<br>
+        they carve my peace, endlessly.<br>
+        I wear despair like second flesh,<br>
+        every sigh — a wound made fresh.`
+      },
+      {
+        key: "where-light-refuses-to-stay",
+        title: "Where Light Refuses to Stay",
+        content: `Somewhere between dusk and breath,<br>
+        I misplaced the shape of being.<br>
+        My soul — a room unlit for years,<br>
+        still echoing someone’s leaving.<br><br>
+        The sky writes eulogies in dawn,<br>
+        each ray a wound I’ve memorized.<br>
+        The wind repeats forgotten names,<br>
+        the ones I buried, still disguised.<br><br>
+        I walk through hours made of dust,<br>
+        the clocks have stopped inside my chest.<br>
+        Even silence hums too loud,<br>
+        when emptiness won’t rest.<br><br>
+        The stars once whispered truths to me,<br>
+        now they only stare, polite and cold.<br>
+        I am the shadow of a thought,<br>
+        that never wanted to grow old.<br><br>
+        My heartbeat drips like melting wax,<br>
+        time folding in its fragile art.<br>
+        I am the echo after sound,<br>
+        the ghost still haunting its own heart.<br><br>
+        And when I sleep — the dark arrives,<br>
+        like someone who still knows my name.<br>
+        But morning finds me, once again,<br>
+        and everything begins the same.`
+      },
+      {
+        key: "the-sacred-frame",
+        title: "The Sacred Frame",
+        content: `I have loved you with a devotion that felt like an ache,<br>
+        Twice rejected, yet I stayed an unyielding anchor,<br>
+        Finding my peace in the small shadows of your happiness.<br><br>
+        Then, the unexpected lightning —<br>
+        You carved my name into your world,<br>
+        A single story that shattered the silence of months.<br>
+        To see myself through your eyes is a heavy grace,<br>
+        The tears that blur my vision are heavy with the wait.<br><br>
+        It is a different kind of joy, thick and overwhelming,<br>
+        Like a tidal wave of salt and light.<br>
+        The tears that fall are not fragile,<br>
+        They are weighted with the truth of a thousand unspoken vows.<br><br>
+        Finally, the soul recognizes its counterpart.<br>
+        I am not just loving you —<br>
+        I am seen by you.<br>
+        Each drop a testament to the soulmate I’ve always known.<br><br>
+        It is a crushing happiness, a beautiful weight,<br>
+        To finally be seen, to finally be home.`
+      }
+    ];
+
+    const params = new URLSearchParams(window.location.search);
+    let currentIndex = poems.findIndex(p => p.key === params.get("title"));
+    if (currentIndex === -1) currentIndex = 0;
+
+    const poemTitle = document.getElementById("poemTitle");
+    const poemContent = document.getElementById("poemContent");
+    const poemContainer = document.getElementById("poemContainer");
+
+    function displayPoem(index) {
+      const poem = poems[index];
+      poemTitle.innerHTML = poem.title;
+      poemContent.innerHTML = poem.content;
+      document.title = `${poem.title} | Poem by Your Name`;
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function nextPoem() {
+      poemContainer.classList.add("slide-out");
+      setTimeout(() => {
+        currentIndex = (currentIndex + 1) % poems.length;
+        displayPoem(currentIndex);
+        poemContainer.classList.remove("slide-out");
+      }, 400);
+    }
+
+    function prevPoem() {
+      poemContainer.classList.add("slide-out");
+      setTimeout(() => {
+        currentIndex = (currentIndex - 1 + poems.length) % poems.length;
+        displayPoem(currentIndex);
+        poemContainer.classList.remove("slide-out");
+      }, 400);
+    }
+
+    function closePoem() {
+      window.location.href = "index.html";
+    }
+
+    displayPoem(currentIndex);
+  </script>
+</body>
+</html>
+ 

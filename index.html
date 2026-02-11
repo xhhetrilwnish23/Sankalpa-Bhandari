@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="Sankalpa" content="width=device-width, initial-scale=1.0" />
+  <title>Sankalpa Bhandari| Portfolio </title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Hero Section -->
+  <section id="hero">
+    <div class="overlay"></div>
+    <div class="hero-content">
+      <img src="lanish.jpg" alt="Your Photo" class="profile-photo" />
+      <h1>Sankalpa Bhandari </h1>
+      <p> Learning • Poet • Creator</p>
+      <p> Still Learning With Dump Mistakes</p>
+    </div>
+  </section>
+
+  <!-- Navigation -->
+<nav class="navbar">
+  <ul>
+    <li><a href="#poetry-gallery">Poetry Gallery</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#private">Private Projects</a></li>
+  </ul>
+</nav>
+
+<!-- Poetry Gallery Section -->
+<section id="poetry-gallery" class="content-section">
+  <h2>Poetry Gallery</h2>
+  <p>Web app to showcase creative writings.</p>
+
+  <div class="grid">
+    <div class="card">
+      <a href="poem.html?title=her-smile">
+        <h3>Her Smile</h3>
+         </a>
+    </div>
+
+    <div class="card">
+      <a href="poem.html?title=around-you-like-the-sun">
+        <h3> Around You Like the Sun</h3>
+          </a>
+    </div>
+
+    <div class="card">
+      <a href="poem.html?title=a-silent-wish-,-a-constant-sky">
+        <h3>A Silent Wish, A Constant Sky</h3>
+       </a>
+    </div>
+      
+    <div class="grid">
+      <div class="card">
+        <a href="poem.html?title=the-silence-beneath-my-skin">
+          <h3>The Silence Beneath My Skin</h3>
+          </a>
+      </div>
+
+      <div class="card">
+        <a href="poem.html?title=where-light-refuses-to-stay">
+          <h3>Where Light Refuses to Stay</h3>
+           </a>
+      </div>
+
+      <div class="card">
+        <a href="poem.html?title=the-sacred-frame">
+          <h3>The Sacred Frame</h3>
+          </a>
+      </div>
+    
+  </div>
+</section>
+
+<!-- Projects Section -->
+<section id="projects" class="content-section">
+  <h2>Projects</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Website / Projects</h3>
+      <p>Personal  built with HTML, CSS, and JS.</p>
+    </div>
+    <div class="card">
+      <h3>Creative Web Apps</h3>
+      <p>Interactive and artistic web experiences.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Private Projects Section -->
+<section id="private" class="content-section">
+  <h2>Private Projects</h2>
+  <p>Exclusive works and experimental designs.</p>
+</section>
+
+  <!-- Private Projects Section -->
+<section id="private" class="content-section">
+  <h2>Private Projects</h2>
+  <button id="unlockBtn">🔒 Unlock Private Projects</button>
+
+  <div id="privateContent" class="hidden">
+    <div class="grid">
+      <div class="card">
+        <h3>Special birthday wish</h3>
+        <p><a href="https://xhhetrilwnish23.github.io/dear-beautiful/" target="_blank">Open Project</a></p>
+      </div>
+
+      <div class="card">
+        <h3> Letter</h3>
+        <p><a href="https://xhhetrilwnish23.github.io/letter-/" target="_blank">Open Project</a></p>
+      </div>
+
+       
+    </div>
+  </div>
+</section>
+
+  <!-- Unlock Modal -->
+  <div id="unlockModal" class="modal">
+    <div class="modal-content">
+      <h3>Enter 4-Digit Code</h3>
+      <input type="password" id="codeInput" maxlength="4" placeholder="****" />
+      <button id="confirmUnlock">Unlock</button>
+      <button onclick="closeModal('unlockModal')">Close</button>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2026 Lanish Xhhetri. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+  
